@@ -35,6 +35,15 @@ header {
 header span {
     font-family: 'Sacramento', cursive;
 }
+
+#navbarNav {
+    justify-content: right;
+    font-size: 32px;
+}
+.navbar-nav .nav-item {
+    margin-right: 15px;
+}
+
 main {
     position: relative;
 }
