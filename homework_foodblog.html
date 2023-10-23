@@ -4,9 +4,19 @@
     <title>Food Blog</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+    <!-- Stylesheets -->
     <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <!-- Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
     <style>
         * {
             font-family:Arial, Helvetica, sans-serif;
@@ -36,9 +46,11 @@
         header {
             height: 50px;
             background-color:rgba(231, 229, 229, 0.5);
-            font-size: 2.75em;
-            padding:0.5em;
+            font-size: 45px;
+            padding: 0.6em;
+            line-height: 10px;
             color:rgb(216, 150, 7);
+            margin-bottom: 0.3em;
         }
         header span {
             font-family: 'Sacramento', cursive;
@@ -70,6 +82,18 @@
             border: 2px solid rgba(83, 78, 58, 0.6);
             border-radius: 0.5em;
         }
+
+        .modal {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .modal-header h5 {
+            font-size: 30px;
+            font-weight: bolder;
+        }
+        .modal-body {
+            font-size: 20px;
+        }
+
         footer {
             position: absolute;
             bottom: 0;
@@ -99,12 +123,42 @@
 
             <section id="blogposts">
                 <div class="post" v-for="post in posts">
+                    <!-- Added a profile picture -->
+                    <a href="#" @click="showProfileBox(post.author)" data-toggle="modal" data-target="#profileModal">
+                        <img v-bind:src="'images/profile.png'" alt="Author" width="60">
+                    </a>
+
                     <span class="author">{{ post.author }}</span> 
                     <span class="author">{{ post.date }}</span>
                     <span class="reply">{{ post.reply }}</span>
                     <p>{{post.content}}</p>
                 </div>
 
+                <!-- Modal -->
+                <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <!-- Modal header -->
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="profileModalLabel">{{ selectedAuthor }}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <p><strong>Foodie Level:</strong> {{ getLevel(selectedAuthor) }}</p>
+                                <p><strong>Bio:</strong> {{ getBio(selectedAuthor) }}</p>
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             </main>
@@ -116,6 +170,6 @@
         </div>
     </div>
 
-    <script src="vue/day1.js"></script>
+    <script src="vue/day2.js"></script>
 </body>
 </html>
