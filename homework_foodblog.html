@@ -9,6 +9,7 @@
     <!-- Stylesheets -->
     <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" type="text/css" href="style.css">
 
     <!-- Vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
@@ -17,117 +18,30 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-    <style>
-        * {
-            font-family:Arial, Helvetica, sans-serif;
-        }
-        #leftside {
-            float:left;
-            width: 30%;
-            min-height: 1200px;
-            background-color:rgb(77, 192, 154);
-        }
-        #rightside {
-            float:left;
-            width: 70%;
-            min-height: 1200px;
-            background-color:rgb(238, 226, 192);
-            position:relative;
-        }
-        #container {
-            background-color:rgba(255, 255, 255, 0.85);
-            position: absolute;
-            top: 15%;
-            left: 15%;
-            min-width: 1100px;
-            min-height: 1050px;
-            border-radius: 0.7em;
-        }
-        header {
-            height: 50px;
-            background-color:rgba(231, 229, 229, 0.5);
-            font-size: 45px;
-            padding: 0.6em;
-            line-height: 10px;
-            color:rgb(216, 150, 7);
-            margin-bottom: 0.3em;
-        }
-        header span {
-            font-family: 'Sacramento', cursive;
-        }
-        main {
-            position: relative;
-        }
-        main h2 {
-            position: absolute;
-            left: 20%;
-            top: 30px;
-            margin: 25px 0 200px 50px;
-            color:rgb(60, 190, 160);
-            text-transform: uppercase;
-        }
-        main #photos img {
-            margin: 0.75em;
-            border: 0.85em solid rgb(255, 255, 255);
-        }
-        section#blogposts {
-            position: absolute;
-            left: 20%;
-            top: 70px;
-            padding: 50px;
-        }
-        main .post {
-            margin: 25px;
-            padding: 25px;
-            border: 2px solid rgba(83, 78, 58, 0.6);
-            border-radius: 0.5em;
-        }
-
-        .modal {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        .modal-header h5 {
-            font-size: 30px;
-            font-weight: bolder;
-        }
-        .modal-body {
-            font-size: 20px;
-        }
-
-        footer {
-            position: absolute;
-            bottom: 0;
-            height: 50px;
-            width: 100%;
-            text-align: center;
-            font-size: 0.85em;
-        }
-    </style>
-
-    
-
 </head>
 <body>
     <div id="app">
         <aside id="leftside"></aside>
         <aside id="rightside"></aside>
         <div id="container">
-            <header><span>{{ title }}</span></header>
+            <header>
+                <app-nav></app-nav>
+            </header>
 
             <main>
-            
-            <aside id="photos">
-                <img src="images/chili.jpg" alt="White Chicken Chili" width="180">
+
+            <!-- Convert image to vue -->
+            <aside id="photos" >
+                <img :src="chiliImageSrc" alt="White Chicken Chili" width="180">
             </aside>
+
             <h2>{{ subtitle }}</h2>
 
             <section id="blogposts">
                 <div class="post" v-for="post in posts">
-                    <!-- Added a profile picture -->
                     <a href="#" @click="showProfileBox(post.author)" data-toggle="modal" data-target="#profileModal">
                         <img v-bind:src="'images/profile.png'" alt="Author" width="60">
                     </a>
-
                     <span class="author">{{ post.author }}</span> 
                     <span class="author">{{ post.date }}</span>
                     <span class="reply">{{ post.reply }}</span>
@@ -170,6 +84,6 @@
         </div>
     </div>
 
-    <script src="vue/day2.js"></script>
+    <script src="vue/day3.js"></script>
 </body>
 </html>
